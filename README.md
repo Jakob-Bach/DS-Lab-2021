@@ -1,2 +1,39 @@
-# Supervisor Repo
+# Data Science Laboratory Course 2021
 
+This is the supervisor repo of the ["Data Science Laboratory Course"](https://dbis.ipd.kit.edu/english/3044.php) at KIT in 2021.
+Students worked on two subtasks:
+
+- the [Data Mining Cup 2021](https://www.data-mining-cup.com/dmc-2021/)
+- a research task
+
+The repo provides files for preparing the datasets, some basic exploration, course-internal splitting, scoring, and demo submissions for that.
+
+## Setup
+
+We use Python with version `3.9.2`.
+We recommend to set up a virtual environment to install the dependencies, e.g., with `virtualenv`:
+
+```bash
+python -m virtualenv -p <path/to/right/python/executable> <path/to/env/destination>
+```
+
+or with `conda` (which we used, version `4.10.0`):
+
+```bash
+conda create --name ds-lab-2021 python=3.9.2
+```
+
+Next, install the dependencies with
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+If you make changes to the environment and you want to persist them, run
+
+```bash
+python -m pip freeze > requirements.txt
+```
+
+We installed `spyder-kernels` into the environment, so you should be able to use the environment in the IDE `Sypder`
+(if the versions of `spyder-kernels` and `Spyder` are compatible).
