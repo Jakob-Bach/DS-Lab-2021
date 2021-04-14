@@ -37,3 +37,14 @@ python -m pip freeze > requirements.txt
 
 We installed `spyder-kernels` into the environment, so you should be able to use the environment in the IDE `Sypder`
 (if the versions of `spyder-kernels` and `Spyder` are compatible).
+
+## Task 1: Data Mining Cup 2021 (`Task_1_DMC_2021/`)
+
+### Preparation
+
+Download the DMC task from the [website](https://www.data-mining-cup.com/dmc-2021/).
+Place the three CSVs in a folder called `data` in the folder `Task_1_DMC_2021`.
+
+### Data Exploration
+
+`explore_data.py` allows very basic interactive (e.g., in IDE) exploration.
