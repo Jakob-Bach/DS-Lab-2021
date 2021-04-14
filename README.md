@@ -48,3 +48,10 @@ Place the three CSVs in a folder called `data` in the folder `Task_1_DMC_2021`.
 ### Data Exploration
 
 `explore_data.py` allows very basic interactive (e.g., in IDE) exploration.
+
+### Demo Submissions
+
+We provide two simple demo submissions:
+
+- `recommend_global_favorites.py`: Ignore item to evaluate and recommend globally popular items.
+- `recommend_cooccurring_favorites.py`: Find items which are most popular in sessions with item to evaluate.

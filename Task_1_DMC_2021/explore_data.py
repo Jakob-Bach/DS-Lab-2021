@@ -40,6 +40,8 @@ transactions.drop(columns=['itemID', 'sessionID']).describe()
 transactions.groupby('click').size()
 transactions.groupby('basket').size()
 transactions.groupby('order').size()
+(transactions['basket'] <= transactions['click']).value_counts()  # makes sense, but violated some times
+(transactions['order'] <= transactions['basket']).value_counts()  # makes sense, but violated some times
 
 # Explore "evaluation"
 evaluation.head()
