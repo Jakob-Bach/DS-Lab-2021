@@ -49,9 +49,13 @@ Place the three CSVs in a folder called `data` in the folder `Task_1_DMC_2021`.
 
 `explore_data.py` allows very basic interactive (e.g., in IDE) exploration.
 
+### Internal Scoring
+
+`check_validity.py` checks whether submission files have the right format.
+
 ### Demo Submissions
 
-We provide two simple demo submissions:
+We provide two simple demo submission scripts that produce solutions observing the DMC submission format:
 
 - `recommend_global_favorites.py`: Ignore item to evaluate and recommend globally popular items.
 - `recommend_cooccurring_favorites.py`: Find items which are most popular in sessions with item to evaluate.

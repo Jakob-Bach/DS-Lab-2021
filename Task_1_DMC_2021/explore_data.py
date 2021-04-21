@@ -10,7 +10,7 @@ import pandas as pd
 
 
 # Load data
-# unnecessary options (default or recognized): header=True, decimal='.', encoding='utf-8', escapechar=None
+# unnecessary options (default or recognized): header=0, decimal='.', encoding='utf-8', escapechar=None
 evaluation = pd.read_csv('data/evaluation.csv')
 items = pd.read_csv('data/items.csv', sep='|', quoting=csv.QUOTE_NONE)
 transactions = pd.read_csv('data/transactions.csv', sep='|')

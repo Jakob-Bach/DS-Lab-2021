@@ -33,9 +33,9 @@ for i, itemID in enumerate(evaluation['itemID']):
                                      (transactions['itemID'] != itemID)]
         relevant_item_ranking = relevant_data.groupby('itemID')['click'].sum().sort_values(ascending=False)
         top_items = list(relevant_item_ranking[:5].index.values)
-        if len(top_items) < 5:  # if not co-occurring items, fill with globally popular items
+        if len(top_items) < 5:  # if not enough co-occurring items, fill with globally popular items
             top_items.extend(global_top_items[:(5 - len(top_items))])
         evaluation.iloc[i, 1:] = top_items
 
 # Write result
-evaluation.to_csv(OUTPUT_DIR + 'prediction.csv', sep='|', index=False)
+evaluation.to_csv(OUTPUT_DIR + 'Jakob-cooccurring-favorites_recommendation.csv', sep='|', index=False)

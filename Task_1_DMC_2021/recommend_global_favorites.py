@@ -22,4 +22,4 @@ top_items = list(transactions.groupby('itemID')['click'].sum().sort_values(ascen
 evaluation[[f'rec_{i + 1}' for i in range(5)]] = top_items
 
 # Write result
-evaluation.to_csv(OUTPUT_DIR + 'prediction.csv', sep='|', index=False)
+evaluation.to_csv(OUTPUT_DIR + 'Jakob-global-favorites_recommendation.csv', sep='|', index=False)
