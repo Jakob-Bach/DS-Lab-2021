@@ -1,4 +1,4 @@
-"""Recommend co-occuding favorites
+"""Recommend co-occurring favorites
 
 Simple solution script which scans the training data for all transactions containing the evaluation
 item at-hand and recommnends the most popular co-occurrring items. Defaults to the globally

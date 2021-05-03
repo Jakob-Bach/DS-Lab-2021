@@ -15,7 +15,8 @@ SUBMISSION_DIR = pathlib.Path('data/')
 DATA_DIR = pathlib.Path('data/')  # needs to contain "evaluation.csv" and "items.csv"
 
 
-def check_validity(submission: pd.DataFrame, test_values: pd.DataFrame, valid_itemIDs: Sequence[int]) -> str:
+def check_submission_validity(submission: pd.DataFrame, test_values: pd.DataFrame,
+                              valid_itemIDs: Sequence[int]) -> str:
     if isinstance(valid_itemIDs, pd.Series):
         valid_itemIDs = list(valid_itemIDs)  # else check with .isin() might not work as expected
     if submission.shape[0] != test_values.shape[0]:
@@ -46,8 +47,8 @@ if __name__ == '__main__':
         submission = pd.read_csv(submission_file, sep='|', quoting=csv.QUOTE_NONE, header=0,
                                  decimal='.', encoding='utf-8', escapechar=None)
         team_name = submission_file.stem.replace('_recommendation', '')
-        validity_status = check_validity(submission=submission, test_values=test_values,
-                                         valid_itemIDs=items['itemID'])
+        validity_status = check_submission_validity(submission=submission, test_values=test_values,
+                                                    valid_itemIDs=items['itemID'])
         results.append({'Team': team_name, 'Validity': validity_status})
     results = pd.DataFrame(results)
     print(results)
