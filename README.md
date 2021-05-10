@@ -51,7 +51,8 @@ Place the three CSVs in a folder called `data` in the folder `Task_1_DMC_2021`.
 
 ### Internal Scoring
 
-- `check_validity.py` checks whether submission files have the right format.
+- `check_submission_validity.py` checks whether submission files have the right format.
+- `check_submission_identity.py` checks whether identically-named submission files have the same content (= checks reproducibility).
 - `prepare_manual_scoring.py` prepares input files and output files for manual course-internal scoring.
 - `evaluate_manual_scoring.py` reads output files of manual scoring and combines them.
 
