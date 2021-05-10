@@ -26,7 +26,6 @@ if __name__ == '__main__':
     test_values = pd.read_csv(DATA_DIR / 'evaluation.csv', sep='|')
     evaluation_item_ids = list(test_values['itemID'].sample(n=NUM_ITEMS, replace=False, random_state=SEED))
     items = pd.read_csv(DATA_DIR / 'items.csv', sep='|', quoting=csv.QUOTE_NONE)
-    items = items[items['itemID'].isin(evaluation_item_ids)]
     items.rename(columns={'itemID': 'rec_item'}, inplace=True)  # for merge later
     submission_files = list(SUBMISSION_DIR.glob('**/*_recommendation.csv'))
     for scoring_group in SCORING_GROUPING:
