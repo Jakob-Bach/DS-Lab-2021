@@ -30,7 +30,7 @@ def check_scoring_validity(scoring_table: pd.DataFrame) -> Optional[str]:
         return 'At least one NA.'
     if (scoring_table.groupby('itemID')['scoring'].nunique() != scoring_table['team'].nunique()).any():
         return 'At least one items has not the right number of distinct scores.'
-    if any(sorted(scoring_table['scoring'].unique()) != [0, 1, 2]):
+    if sorted(scoring_table['scoring'].unique()) != [0, 1, 2]:
         return 'At least one score out of range.'
     return None
 
@@ -45,6 +45,7 @@ if __name__ == '__main__':
         if validity_result is not None:
             print(f'Scoring file "{scoring_file.stem}" is invalid because "{validity_result}", ' +
                   'will be ignored.')
+            continue
         scoring_tables.append(scoring_table)
     scoring_table = pd.concat(scoring_tables)
-    print(scoring_table.groupby('team')['scoring'].mean())
+    print(scoring_table.groupby('team')['scoring'].mean().sort_values(ascending=False).to_frame())
