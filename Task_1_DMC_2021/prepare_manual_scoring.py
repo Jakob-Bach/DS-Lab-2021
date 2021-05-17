@@ -23,6 +23,10 @@ SEED = 25  # random seed for sampling items
 
 
 if __name__ == '__main__':
+    if not DATA_DIR.exists():
+        FileNotFoundError(f'"{DATA_DIR}" does not exist.')
+    if not SUBMISSION_DIR.exists():
+        FileNotFoundError(f'"{SUBMISSION_DIR}" does not exist.')
     test_values = pd.read_csv(DATA_DIR / 'evaluation.csv', sep='|')
     evaluation_item_ids = list(test_values['itemID'].sample(n=NUM_ITEMS, replace=False, random_state=SEED))
     items = pd.read_csv(DATA_DIR / 'items.csv', sep='|', quoting=csv.QUOTE_NONE)

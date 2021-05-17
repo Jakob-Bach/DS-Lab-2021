@@ -15,6 +15,10 @@ SUBMISSION_DIR_2 = pathlib.Path('data/')
 
 
 if __name__ == '__main__':
+    if not SUBMISSION_DIR_1.exists():
+        FileNotFoundError(f'"{SUBMISSION_DIR_1}" does not exist.')
+    if not SUBMISSION_DIR_2.exists():
+        FileNotFoundError(f'"{SUBMISSION_DIR_2}" does not exist.')
     submission_files_1 = list(SUBMISSION_DIR_1.glob('**/*_recommendation.csv'))
     submission_files_2 = list(SUBMISSION_DIR_2.glob('**/*_recommendation.csv'))
     submission_pairs = []
@@ -38,6 +42,6 @@ if __name__ == '__main__':
         team_name = submission_file_1.stem.replace('_recommendation', '')
         identity_status = (submission_1.columns == submission_2.columns).all() and\
             (submission_1 == submission_2).all().all()
-        results.append({'Team': team_name, 'Submission_indentical': identity_status})
+        results.append({'Team': team_name, 'Submission_identical': identity_status})
     results = pd.DataFrame(results)
     print(results)

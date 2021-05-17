@@ -36,6 +36,8 @@ def check_scoring_validity(scoring_table: pd.DataFrame) -> Optional[str]:
 
 
 if __name__ == '__main__':
+    if not SUBMISSION_DIR.exists():
+        FileNotFoundError(f'"{SUBMISSION_DIR}" does not exist.')
     scoring_files = SUBMISSION_DIR.glob('**/*_scoring.csv')
     scoring_tables = []
     for scoring_file in scoring_files:
