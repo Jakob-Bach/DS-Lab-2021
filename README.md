@@ -4,7 +4,7 @@ This is the supervisor repo of the ["Data Science Laboratory Course"](https://db
 Students worked on two subtasks:
 
 - the [Data Mining Cup 2021](https://www.data-mining-cup.com/dmc-2021/)
-- a research task
+- a research dataset, created from verification of auction process models
 
 The repo provides files for preparing the datasets, some basic exploration, course-internal splitting, scoring, and demo submissions for that.
 
@@ -45,11 +45,11 @@ We installed `spyder-kernels` into the environment, so you should be able to use
 Download the DMC task from the [website](https://www.data-mining-cup.com/dmc-2021/).
 Place the three CSVs in a folder called `data` in the folder `Task_1_DMC_2021`.
 
-### Data Exploration
+### Exploration
 
 `explore_data.py` allows very basic interactive (e.g., in IDE) exploration.
 
-### Internal Scoring
+### Scoring
 
 - `check_submission_validity.py` checks whether submission files have the right format.
 - `check_submission_identity.py` checks whether identically-named submission files have the same content (= checks reproducibility).
@@ -62,3 +62,21 @@ We provide two simple demo submission scripts that produce solutions observing t
 
 - `recommend_global_favorites.py`: Ignore item to evaluate and recommend globally popular items.
 - `recommend_cooccurring_favorites.py`: Find items which are most popular in sessions with item to evaluate.
+
+## Task 2: Verification of Auction Process Models
+
+For some background on the scenario, you can read
+
+> Ordoni, E., Mülle, J., & Böhm, K. (2020). Verification of Data-Value-Aware Processes and a Case Study on Spectrum Auctions.
+
+Our dataset is based on verification of process models mimicking the German 4G Spectrum Auction,
+featuring six products and four bidders.
+
+## Preparation
+
+Obtain the original dataset `Process4.csv` and place it a folder called `data` in the folder `Task_2_Auction_Verification`.
+Run `prepare_data.py` to create a student-friendly, pre-processed version of the dataset.
+
+## Exploration
+
+`explore_data.py` allows basic interactive (e.g., in IDE) exploration and predictions.
