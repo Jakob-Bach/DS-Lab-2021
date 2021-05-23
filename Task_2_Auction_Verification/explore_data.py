@@ -41,6 +41,18 @@ dataset.loc[dataset['id.iteration'] == 1, [x for x in dataset.columns if 'capaci
 # Allocation is set only in last round:
 (dataset['allocation.p1.price'].notna() == dataset['verification.is_final']).all()
 (dataset['allocation.revenue'].notna() == dataset['verification.is_final']).all()
+# Number of wins is lower than the capacities:
+initial_capacities = dataset.loc[0, [x for x in dataset.columns if 'capacity' in x]]
+for i in range(1, 5):
+    print(((dataset[[x for x in dataset.columns if 'allocation' in x and 'winner' in x]] == i).sum(
+        axis='columns') <= initial_capacities.iloc[i - 1]).all())
+# Check maxmimum prices for each product and bidder (might be NaN if bidder never wins product):
+for product_id in range(1, 7):
+    for bidder_id in range(1, 5):
+        print(f'b{bidder_id}.p{product_id}.max_price:',
+              dataset.loc[dataset[f'allocation.p{product_id}.winner'] == bidder_id,
+                          f'allocation.p{product_id}.price'].max())
+    print()
 # For each permutation of products and for each product within the permutation, there are two
 # positive results (determine price and determine winner):
 (dataset.groupby(['id.product_permutation', 'property.product'])['verification.result'].sum() == 2).all()
