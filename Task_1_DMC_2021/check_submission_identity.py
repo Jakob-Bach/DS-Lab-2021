@@ -40,8 +40,8 @@ if __name__ == '__main__':
         submission_2 = pd.read_csv(submission_file_2, sep='|', quoting=csv.QUOTE_NONE, header=0,
                                    decimal='.', encoding='utf-8', escapechar=None)
         team_name = submission_file_1.stem.replace('_recommendation', '')
-        identity_status = (submission_1.columns == submission_2.columns).all() and\
-            (submission_1 == submission_2).all().all()
-        results.append({'Team': team_name, 'Submission_identical': identity_status})
+        num_row_diff = (submission_1 != submission_2).any(axis='columns').sum()
+        num_total_diff = (submission_1 != submission_2).sum().sum()
+        results.append({'Team': team_name, 'Row_diff': num_row_diff, 'Total_diff': num_total_diff})
     results = pd.DataFrame(results)
     print(results)
