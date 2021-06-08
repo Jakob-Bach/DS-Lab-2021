@@ -53,7 +53,7 @@ Place the three CSVs in a folder called `data` in the folder `Task_1_DMC_2021`.
 
 - `check_submission_validity.py` checks whether submission files have the right format.
 - `check_submission_identity.py` checks whether identically-named submission files have the same content (= checks reproducibility).
-- `prepare_manual_scoring.py` prepares input files and output files for manual course-internal scoring.
+- `prepare_manual_scoring.py` prepares input files and output files for manual course-internal scoring of randomly sampled recommendations.
 - `evaluate_manual_scoring.py` reads output files of manual scoring and combines them.
 
 ### Demo Submissions
@@ -63,7 +63,16 @@ We provide two simple demo submission scripts that produce solutions observing t
 - `recommend_global_favorites.py`: Ignore item to evaluate and recommend globally popular items.
 - `recommend_cooccurring_favorites.py`: Find items which are most popular in sessions with item to evaluate.
 
-## Task 2: Verification of Auction Process Models
+### Distributed Submission
+
+For the DMC submission, we combine multiple submissions that were created by the teams' pipelines.
+To this end, we let the participants manually decide which of the submissions to use for each item.
+As making this decision for the full test set would require a lot of effort, we distribute the manual work over all participants.
+
+- `prepare_distributed_solution.py` prepares input files and output files for the manual selection process.
+- `combine_distributed_solution.py` read output files of manual selection as well as submission files and combines them.
+
+## Task 2: Verification of Auction Process Models (`Task_2_Auction_Verification/`)
 
 For some background on the scenario, you can read
 
