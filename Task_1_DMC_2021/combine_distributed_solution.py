@@ -33,6 +33,8 @@ if __name__ == '__main__':
     for selection_file in selection_files:
         selection_table = pd.read_csv(selection_file, sep='|', quoting=csv.QUOTE_NONE, header=0,
                                       decimal='.', encoding='utf-8', escapechar=None)
+        if not selection_table['group'].isin(COMBINED_GROUPS).all():
+            print(f'Selection file "{selection_file.stem}" contains invalid group names.')
         selection_tables.append(selection_table)
     selection_table = pd.concat(selection_tables)
     # Read in submissions (recommendations) and extract those parts were they are best accordng
