@@ -17,7 +17,7 @@ import check_submission_validity
 
 
 SUBMISSION_DIR = pathlib.Path('data/')
-DATA_DIR = pathlib.Path('data/')  # needs to contain "evaluation.csv"
+DATA_DIR = pathlib.Path('data/')  # needs to contain "evaluation.csv" and "items.csv"
 COMBINED_GROUPS = ['Baratheon', 'Targaryen']
 
 
@@ -26,9 +26,10 @@ if __name__ == '__main__':
         FileNotFoundError(f'"{DATA_DIR}" does not exist.')
     if not SUBMISSION_DIR.exists():
         FileNotFoundError(f'"{SUBMISSION_DIR}" does not exist.')
+    items = pd.read_csv(DATA_DIR / 'items.csv', sep='|', quoting=csv.QUOTE_NONE)
     test_values = pd.read_csv(DATA_DIR / 'evaluation.csv', sep='|')
     # Read in manual selections:
-    selection_files = SUBMISSION_DIR.glob('**/selection_*.csv')
+    selection_files = [x for x in SUBMISSION_DIR.glob('**/selection_*.csv') if 'template' not in x.name]
     selection_tables = []
     for selection_file in selection_files:
         selection_table = pd.read_csv(selection_file, sep='|', quoting=csv.QUOTE_NONE, header=0,
@@ -37,7 +38,7 @@ if __name__ == '__main__':
             print(f'Selection file "{selection_file.stem}" contains invalid group names.')
         selection_tables.append(selection_table)
     selection_table = pd.concat(selection_tables)
-    # Read in submissions (recommendations) and extract those parts were they are best accordng
+    # Read in submissions (recommendations) and extract those parts were they are best according
     # to the manual selections:
     submission = pd.DataFrame({'itemID': test_values['itemID']})
     submission[[f'rec_{i + 1}' for i in range(5)]] = -1
@@ -52,5 +53,5 @@ if __name__ == '__main__':
         submission.iloc[select_group_idx, 1:] = group_submission.iloc[select_group_idx, 1:]
     # Check and save final submission:
     print(check_submission_validity.check_submission_validity(
-        submission=submission, test_values=test_values, valid_itemIDs=test_values['itemID']))
-    submission.to_csv(SUBMISSION_DIR / 'IT_Karlsruhe_1.csv', index=False)
+        submission=submission, test_values=test_values, valid_itemIDs=items['itemID']))
+    submission.to_csv(SUBMISSION_DIR / 'IT_Karlsruhe_1.csv', sep='|', index=False)
