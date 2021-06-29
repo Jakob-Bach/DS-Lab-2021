@@ -2,6 +2,8 @@
 
 Code snippets for interactively (e.g., in an IDE) exploring the data, including simple predictions.
 Not intended for execution from a console.
+Code was written based on the small-domain verification dataset. The large-domain verification
+dataset might behave differently (i.e., violate some assumptions expressed in comments below).
 """
 
 import matplotlib.pyplot as plt
@@ -35,7 +37,7 @@ dataset['verification.time'].plot.hist()
 dataset.groupby([x for x in dataset.columns if 'capacity' in x]).ngroups
 # In first iteration of each verification sequence, capacity is always same:
 dataset.loc[dataset['id.iteration'] == 1, [x for x in dataset.columns if 'capacity' in x]].nunique()
-# In last iteration of each verification sequence, five of ten products are assigned (the last
+# In last iteration of each verification sequence, five of six products are assigned (the last
 # product would affect capacity only in next iteration):
 (dataset.groupby('id.product_permutation').last()[[x for x in dataset.columns if 'capacity' in x]].sum(axis='columns') == 5).all()
 # Allocation is set only in last round:
@@ -58,7 +60,7 @@ for product_id in range(1, 7):
 (dataset.groupby(['id.product_permutation', 'property.product'])['verification.result'].sum() == 2).all()
 # If last iteration, result is true
 pd.crosstab(dataset['verification.is_final'], dataset['verification.result'])
-# If bidder 3 wins, result is true (because there is no bidder left which could win instead):
+# If bidder 3 wins, result is true (because there is no bidder left who could win instead; bidder 4 never wins):
 pd.crosstab(dataset['property.winner'] == 3, dataset['verification.result'])
 # Correlation:
 plt.figure(figsize=(7, 7))

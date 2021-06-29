@@ -78,13 +78,19 @@ For some background on the scenario, you can read
 
 > Ordoni, E., Mülle, J., & Böhm, K. (2020). Verification of Data-Value-Aware Processes and a Case Study on Spectrum Auctions.
 
-Our dataset is based on verification of process models mimicking the German 4G Spectrum Auction,
+Our datasets are based on verification of process models mimicking the German 4G Spectrum Auction,
 featuring six products and four bidders.
+We have two datasets, which have nearly the same columns, but differ in the domain of their data values.
+I.e., one dataset has a higher range of prices than the other one and therefore has more data objects.
+Also, the interpretation of the formula (= property) to be verified is slightly different between the two dataset.
+In the smaller dataset (`auction_verification`), each price is encoded as a separate data value.
+In the larger dataset (`auction_verification_large`), prices are encoded binarily, which results in longer formulas.
 
 ## Preparation
 
-Obtain the original dataset `Process4.csv` and place it a folder called `data` in the folder `Task_2_Auction_Verification`.
-Run `prepare_data.py` to create a student-friendly, pre-processed version of the dataset.
+Obtain the raw small dataset `Process4.csv` and the raw partititions of the large dataset `result[0-6].csv`.
+Place them a folder called `data` in the folder `Task_2_Auction_Verification`.
+Run `prepare_data.py` to create student-friendly, pre-processed versions of the datasets.
 
 ## Exploration
 
